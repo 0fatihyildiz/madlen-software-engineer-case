@@ -1,7 +1,5 @@
-import { drizzle } from 'drizzle-orm/postgres-js';
-import postgres from 'postgres';
+import { drizzle } from "drizzle-orm/node-postgres"
 
-const sql = postgres(process.env.DATABASE_URL);
-const db = drizzle(sql);
+const db = drizzle(process.env.DATABASE_URL);
 
-export default db;
+export default db

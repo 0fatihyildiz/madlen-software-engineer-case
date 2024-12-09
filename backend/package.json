@@ -13,8 +13,9 @@
   },
   "dependencies": {
     "drizzle-kit": "^0.30.0",
-    "drizzle-orm": "^0.32.1",
-    "drizzle-zod": "^0.5.1"
+    "drizzle-orm": "^0.38.0",
+    "drizzle-zod": "^0.6.0",
+    "pg-core@latest": "link:drizzle-orm/pg-core@latest"
   },
   "devDependencies": {
     "nitropack": "npm:nitropack-nightly@latest",
