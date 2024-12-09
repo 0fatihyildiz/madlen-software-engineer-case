@@ -21,3 +21,10 @@ services:
       - ./frontend:/app
       - /app/node_modules
     command: pnpm run dev --host
+
+  backend:
+    build:
+      context: ./backend
+    container_name: backend_service
+    ports:
+      - "3001:3000"
