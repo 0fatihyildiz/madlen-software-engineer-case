@@ -1,6 +1,6 @@
 import { createApiResponse } from "~/utils/helper";
 
-export default defineEventHandler(async (event) => {
+export default defineCachedEventHandler(async (event) => {
     const id = getRouterParam(event, 'id')
 
     const result = await db.query.questions.findFirst({
