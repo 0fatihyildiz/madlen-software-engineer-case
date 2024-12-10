@@ -3,7 +3,16 @@
   "version": "1.0.0",
   "description": "Maddlen Software Engineer Case",
   "scripts": {
-    "dev": ""
+    "dev": "npm-run-all2 --parallel dev:*",
+    "dev:server": "pnpm --filter server dev",
+    "dev:client": "pnpm --filter client dev",
+    "clean": "pnpm store prune && rimraf dist node_modules package-lock.json"
   },
-  "author": "0fatihyildiz"
+  "author": "0fatihyildiz",
+  "dependencies": {
+    "npm-run-all2": "^6.2.4"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1"
+  }
 }
