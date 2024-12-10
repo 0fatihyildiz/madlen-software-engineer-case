@@ -1,6 +1,6 @@
 import { metadata } from "~/schema";
 
-export default defineEventHandler(async () => {
+export default defineCachedEventHandler(async () => {
     const result = await db.select().from(metadata);
 
     if (!result)
