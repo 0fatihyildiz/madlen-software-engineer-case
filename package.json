@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "Maddlen Software Engineer Case",
   "scripts": {
-    "dev": "npm-run-all2 --parallel dev:*",
-    "dev:server": "pnpm --filter server dev",
-    "postgres": "docker-compose up postgres",
-    "dev:client": "pnpm --filter client dev",
     "clean": "pnpm store prune && rimraf dist node_modules package-lock.json"
   },
   "author": "0fatihyildiz",
