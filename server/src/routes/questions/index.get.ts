@@ -1,4 +1,4 @@
-export default defineEventHandler(async (event) => {
+export default defineCachedEventHandler(async (event) => {
     const query = getQuery(event);
 
     const { difficulty_level, cognitive_level, course_name, context_pages, question_text } = query;

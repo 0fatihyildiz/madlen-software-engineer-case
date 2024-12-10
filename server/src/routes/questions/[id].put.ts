@@ -2,7 +2,7 @@ import QuestionValidation from '../../validation/questions';
 import { eq } from 'drizzle-orm';
 import { questions } from '~/schema/table';
 
-export default defineEventHandler(async (event) => {
+export default defineCachedEventHandler(async (event) => {
     const id = getRouterParam(event, 'id');
 
     const data = await readValidatedBody(event, QuestionValidation.parse);
