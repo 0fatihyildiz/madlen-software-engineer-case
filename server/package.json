@@ -2,16 +2,15 @@
   "name": "server",
   "private": true,
   "scripts": {
-    "dev": "nitropack dev",
-    "build": "nitropack build",
+    "dev": "pnpm nitropack dev",
+    "build": "pnpm nitropack build",
     "preview": "node .output/server/index.mjs",
-    "postinstall": "nitropack prepare",
+    "postinstall": "pnpm nitropack prepare",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "seed": "tsx ./src/seed/index.ts"
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "drizzle-kit": "^0.30.0",

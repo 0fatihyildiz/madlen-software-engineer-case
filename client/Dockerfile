@@ -1,6 +1,6 @@
 FROM node:18-alpine
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
+COPY package.json ./
 RUN corepack enable pnpm && pnpm install
 COPY . .
 EXPOSE 3000
