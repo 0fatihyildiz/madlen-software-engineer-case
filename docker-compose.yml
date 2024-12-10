@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:16
-    container_name: postgres_service
+    container_name: madlen_postgres_service
     ports:
       - "4034:5432"
     environment:
@@ -17,7 +17,7 @@ services:
   frontend:
     build:
       context: ./client
-    container_name: frontend_service
+    container_name: madlen_frontend_service
     ports:
       - "3050:3000"
     volumes:
@@ -28,7 +28,7 @@ services:
   backend:
     build:
       context: ./server
-    container_name: backend_service
+    container_name: madlen_backend_service
     ports:
       - "3051:3000"
     environment:
