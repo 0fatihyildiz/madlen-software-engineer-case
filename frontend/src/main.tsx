@@ -1,10 +1,12 @@
-import React, { StrictMode } from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import Home from './pages/index.tsx'
+import App from './index.tsx'
+
+import '@radix-ui/themes/styles.css'
 import './assets/index.css'
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <Home />
+        <App />
     </StrictMode>,
 )
