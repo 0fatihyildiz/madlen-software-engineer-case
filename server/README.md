@@ -1,6 +1,6 @@
 # Backend Specifications - Madlen Case
 
-This backend service handles the management of metadata, questions, model answers, and supporting evidence using PostgreSQL as the database. It is built with NitroJS, DrizzleORM, and PostgreSQL driver for seamless handling of database interactions.
+This backend service handles the management of metadata, questions, model answers, and supporting evidence using PostgreSQL as the database. It is built with NitroJS, DrizzleORM, and PostgreSQL driver for seamless handling of database interactions. also zod is used for validation of request body.
 
 ## Technologies Used
 
