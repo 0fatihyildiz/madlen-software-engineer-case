@@ -88,6 +88,9 @@ importers:
         specifier: link:drizzle-orm/pg-core@latest
         version: link:drizzle-orm/pg-core@latest
     devDependencies:
+      dotenv:
+        specifier: ^16.4.7
+        version: 16.4.7
       nitropack:
         specifier: npm:nitropack-nightly@latest
         version: nitropack-nightly@2.11.0-20241203-111028.066c4789(drizzle-orm@0.38.0(@types/react@18.3.14)(pg@8.13.1)(postgres@3.4.5)(react@18.3.1))(typescript@5.6.3)

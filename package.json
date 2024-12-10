@@ -1,12 +1,9 @@
 {
   "name": "maddlen-software-engineer-case",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Maddlen Software Engineer Case",
   "scripts": {
-    
+    "dev": ""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "0fatihyildiz"
 }
