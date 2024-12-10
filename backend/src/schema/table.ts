@@ -36,4 +36,7 @@ export const questions = pgTable("questions", {
         .notNull()
         .references(() => modelAnswer.id),
     gradingCriteria: text("grading_criteria").array().notNull(),
+    metadataId: uuid("metadata_id")
+        .notNull()
+        .references(() => metadata.id),
 });

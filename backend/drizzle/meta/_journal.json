@@ -15,6 +15,13 @@
       "when": 1733764071370,
       "tag": "0001_charming_hercules",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1733785942273,
+      "tag": "0002_narrow_moonstone",
+      "breakpoints": true
     }
   ]
 }

@@ -1,0 +1,2 @@
+ALTER TABLE "questions" ADD COLUMN "metadata_id" uuid NOT NULL;--> statement-breakpoint
+ALTER TABLE "questions" ADD CONSTRAINT "questions_metadata_id_metadata_id_fk" FOREIGN KEY ("metadata_id") REFERENCES "public"."metadata"("id") ON DELETE no action ON UPDATE no action;
