@@ -11,22 +11,22 @@ services:
     volumes:
       - ./data:/var/lib/postgresql/data
 
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #   container_name: frontend_service
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - ./frontend:/app
-  #     - /app/node_modules
-  #   command: pnpm run dev --host
+  frontend:
+    build:
+      context: ./client
+    container_name: frontend_service
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    command: pnpm run dev --host
 
-  # backend:
-  #   build:
-  #     context: ./backend
-  #   container_name: backend_service
-  #   ports:
-  #     - "3001:3000"
-  #   environment:
-  #     - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
+  backend:
+    build:
+      context: ./server
+    container_name: backend_service
+    ports:
+      - "3001:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
