@@ -3,7 +3,7 @@ services:
     image: postgres:16
     container_name: postgres_service
     ports:
-      - "5432:5432"
+      - "4034:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -19,7 +19,7 @@ services:
       context: ./client
     container_name: frontend_service
     ports:
-      - "3000:3000"
+      - "3050:3000"
     volumes:
       - ./client:/app
       - /app/node_modules
@@ -30,7 +30,7 @@ services:
       context: ./server
     container_name: backend_service
     ports:
-      - "3001:3000"
+      - "3051:3000"
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
 
