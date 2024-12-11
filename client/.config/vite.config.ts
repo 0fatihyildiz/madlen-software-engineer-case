@@ -7,9 +7,6 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
-            '@tanstack/react-query': '/node_modules/@tanstack/react-query',
-            '@radix-ui/react-icons': '/node_modules/@radix-ui/react-icons',
-            '@radix-ui/themes': '/node_modules/@radix-ui/themes',
         },
     },
     preview: {

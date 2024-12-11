@@ -13,7 +13,6 @@ services:
     networks:
       - postgres_network
 
-
   frontend:
     build:
       context: ./client
@@ -21,7 +20,7 @@ services:
     ports:
       - "3050:3000"
     environment:
-      - VITE_BASE_URL=http://localhost:3001
+      - VITE_BASE_URL=http://localhost:3051
     volumes:
       - ./client:/app
       - /app/node_modules
@@ -34,7 +33,7 @@ services:
     ports:
       - "3051:3000"
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
+      - DATABASE_URL=postgresql://postgres:postgres@localhost:4034/postgres
 
 networks:
   postgres_network:

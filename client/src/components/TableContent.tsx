@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import fetcher from '../utils/api'
 import DeleteDialog from './dialogs/Delete'
 import EditDialog from './dialogs/Edit'
+import EmptyState from './EmptyState'
 
 async function fetchQuestions() {
     return fetcher('/questions')
@@ -15,7 +16,7 @@ function TableContent() {
     if (isLoading)
         return <div>Loading...</div>
     if (error)
-        return <div>Error loading data</div>
+        return <EmptyState />
 
     return (
         <Table.Root variant="surface" className="w-full">

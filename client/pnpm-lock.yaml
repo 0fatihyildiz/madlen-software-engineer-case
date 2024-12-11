@@ -20,6 +20,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.62.7
         version: 5.62.7(react@18.3.1)
+      radix-themes-tw:
+        specifier: ^0.2.3
+        version: 0.2.3
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -70,9 +73,6 @@ importers:
       postcss-import:
         specifier: ^16.1.0
         version: 16.1.0(postcss@8.4.49)
-      radix-themes-tw:
-        specifier: ^0.2.3
-        version: 0.2.3
       tailwindcss:
         specifier: ^3.4.16
         version: 3.4.16

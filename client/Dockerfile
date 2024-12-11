@@ -1,7 +1,8 @@
 FROM node:18-alpine
 WORKDIR /app
 COPY package.json ./
-RUN corepack enable pnpm && pnpm install
+RUN corepack enable pnpm
+RUN pnpm store prune && pnpm install
 COPY . .
 EXPOSE 3000
 CMD ["pnpm", "run", "dev", "--host"]
