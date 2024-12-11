@@ -18,7 +18,7 @@ function TableHeader() {
                     <Select.Content className="h-auto">
                         <Select.Group>
                             <Select.Label>Course Name</Select.Label>
-                            { COURSE_NAME.map(level => <Select.Item key={level} className="capitalize" value={level}>{level}</Select.Item>) }
+                            { COURSE_NAME.map(name => <Select.Item key={name} className="capitalize" value={name}>{name}</Select.Item>) }
                         </Select.Group>
                     </Select.Content>
                 </Select.Root>

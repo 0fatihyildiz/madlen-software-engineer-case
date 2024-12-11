@@ -43,8 +43,8 @@ function TableContent() {
                         <Table.Cell className="capitalize">{question.courseName}</Table.Cell>
                         <Table.Cell align="right">
                             <Flex direction="row" className="w-full flex gap-2 justify-end items-center">
-                                <EditDialog id={question.id} />
                                 <DeleteDialog id={question.id} />
+                                <EditDialog id={question.id} />
                             </Flex>
                         </Table.Cell>
                     </Table.Row>
