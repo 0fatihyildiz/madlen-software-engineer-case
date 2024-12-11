@@ -7,7 +7,6 @@ export default defineEventHandler(async (event) => {
 
     const metadataResponse = await db.select().from(metadata);
 
-
     if (page && !difficulty_level && !cognitive_level && !course_name && !context_pages && !question_text) {
         const paginateMeta = metadataResponse[Number(page) - 1]
 
@@ -41,7 +40,7 @@ export default defineEventHandler(async (event) => {
                 const contextPagesArray = Array.isArray(context_pages) ? context_pages : [context_pages];
 
                 if (contextPagesArray && contextPagesArray.length > 0) {
-                    conditions.push(eq(questions.contextPages, contextPagesArray.map(Number)));
+                    conditions.push(eq(questions.contextPages, contextPagesArray?.map(Number)));
                 }
             }
             if (question_text) {
