@@ -1,6 +1,6 @@
 import { Theme } from '@radix-ui/themes'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import Home from './pages/Home'
+import Home from './pages/home.tsx'
 
 const queryClient = new QueryClient()
 
