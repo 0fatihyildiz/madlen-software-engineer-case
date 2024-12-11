@@ -33,7 +33,7 @@ services:
     ports:
       - "3051:3000"
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@localhost:4034/postgres
+      - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
 
 networks:
   postgres_network:
