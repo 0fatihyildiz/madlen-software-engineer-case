@@ -1,10 +1,10 @@
 import { Theme } from '@radix-ui/themes'
-import Home from './pages/home'
+import Home from './pages/Home'
 
 function App() {
     return (
         <>
-            <Theme>
+            <Theme className="main" accentColor="orange">
                 <Home />
             </Theme>
         </>
