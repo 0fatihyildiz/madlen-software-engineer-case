@@ -20,6 +20,8 @@ services:
     container_name: madlen_frontend_service
     ports:
       - "3050:3000"
+    environment:
+      - VITE_BASE_URL=http://localhost:3001
     volumes:
       - ./client:/app
       - /app/node_modules
