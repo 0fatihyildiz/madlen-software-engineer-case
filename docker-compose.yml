@@ -23,7 +23,6 @@ services:
       - VITE_BASE_URL=http://localhost:3051
     volumes:
       - ./client:/app
-      - /app/node_modules
 
   backend:
     build:
