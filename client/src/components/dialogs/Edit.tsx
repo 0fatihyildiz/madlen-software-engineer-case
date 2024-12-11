@@ -14,7 +14,12 @@ interface Props {
 }
 
 async function editQuestion({ id, data }: { id: string, data: QuestionUpdate }) {
-    return fetcher(`/questions/${id}/edit`, { method: 'POST', body: JSON.stringify(data) })
+    return fetcher(`/questions/${id}/edit`, {
+        'method': 'POST',
+        'body': JSON.stringify(data),
+        'headers': { 'Content-Type': 'application/json' },
+        'Access-Control-Allow-Origin': '*',
+    })
 }
 
 async function fetchQuestionsById({ id }: { id: string }) {
