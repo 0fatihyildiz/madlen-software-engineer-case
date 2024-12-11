@@ -13,7 +13,7 @@ interface Props {
 }
 
 async function editQuestion({ id, data }: { id: string, data: QuestionUpdate }) {
-    return fetcher(`/questions/${id}`, { method: 'PUT', body: JSON.stringify(data) })
+    return fetcher(`/questions/${id}/edit`, { method: 'POST', body: JSON.stringify(data) })
 }
 
 async function fetchQuestionsById({ id }: { id: string }) {

@@ -1,6 +1,8 @@
 import { TrashIcon } from '@radix-ui/react-icons'
 import { AlertDialog, Button, Flex } from '@radix-ui/themes'
 import { useMutation } from '@tanstack/react-query'
+import { useContext } from 'react'
+import { GeneralContext } from '../../context/GeneralContext'
 import fetcher from '../../utils/api'
 
 interface Props {
@@ -8,15 +10,18 @@ interface Props {
 }
 
 async function deleteQuestion(id: string) {
-    return fetcher(`/questions/${id}`, {
+    return fetcher(`/questions/${id}/delete`, {
         method: 'POST',
     })
 }
 
 function DeleteDialog({ id }: Props) {
+    const { fetchQuestions } = useContext(GeneralContext)
+
     const { mutate } = useMutation({
         mutationFn: deleteQuestion,
         onSuccess: () => {
+            fetchQuestions()
         },
         onError: () => {
         },
