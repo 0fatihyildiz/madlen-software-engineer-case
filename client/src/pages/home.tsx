@@ -1,7 +1,20 @@
 import { Flex } from '@radix-ui/themes'
+import { useQuery } from 'react-query'
 import TableHeader from '../components/TableHeader'
+import fetcher from '../utils/api'
+
+async function fetchQuestions() {
+    return fetcher('/questions')
+}
 
 function Home() {
+    const { data, error, isLoading } = useQuery('questions', fetchQuestions)
+
+    if (isLoading)
+        return <div>Loading...</div>
+    if (error)
+        return <div>Error loading data</div>
+
     return (
         <Flex direction="column" gap="2" className="h-full w-full bg-olive-1" justify="center" align="center">
             <Flex direction="row" gap="2" align="center" className="max-w-[60rem] w-full mx-auto">

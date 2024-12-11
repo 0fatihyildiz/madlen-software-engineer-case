@@ -2,7 +2,6 @@ export default defineCachedEventHandler(async (event) => {
     const query = getQuery(event);
 
     const { difficulty_level, cognitive_level, course_name, context_pages, question_text } = query;
-
     if (!difficulty_level && !cognitive_level && !course_name && !context_pages && !question_text) {
         const result = await db.query.questions.findMany();
 

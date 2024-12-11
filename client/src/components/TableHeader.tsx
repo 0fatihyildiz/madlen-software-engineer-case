@@ -11,7 +11,7 @@ function TableHeader() {
             </Flex>
 
             <Flex direction="row" gap="2" align="center">
-                <TextField.Root placeholder="Context Number" />
+                <TextField.Root placeholder="Context N..." className="w-[5.625rem]" />
 
                 <Select.Root>
                     <Select.Trigger className="capitalize" placeholder="Course Name" />
