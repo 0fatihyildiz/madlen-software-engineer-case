@@ -1,9 +1,17 @@
-export default defineCachedEventHandler(async (event) => {
+import { metadata } from "~/schema";
+
+export default defineEventHandler(async (event) => {
     const query = getQuery(event);
 
-    const { difficulty_level, cognitive_level, course_name, context_pages, question_text } = query;
+    const { difficulty_level, cognitive_level, course_name, context_pages, question_text, page } = query;
+
+    const metadataResponse = await db.select().from(metadata);
+    const paginateMeta = metadataResponse[Number(page) - 1]
+
     if (!difficulty_level && !cognitive_level && !course_name && !context_pages && !question_text) {
-        const result = await db.query.questions.findMany();
+        const result = await db.query.questions.findMany({
+            where: (questions, { eq }) => eq(questions.metadataId, paginateMeta.id)
+        })
 
         if (!result.length) {
             throw createError({ message: 'No questions found', statusCode: 404 });
@@ -39,11 +47,14 @@ export default defineCachedEventHandler(async (event) => {
         }
     });
 
-    const result = await dbQuery;
+    const questions = await dbQuery;
 
-    if (!result.length) {
+    if (!questions.length) {
         throw createError({ message: 'No questions found', statusCode: 404 });
     }
 
-    return createApiResponse(200, result);
+    return createApiResponse(200, {
+        questions,
+        metadata: paginateMeta
+    });
 });

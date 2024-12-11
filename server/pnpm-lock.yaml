@@ -17,6 +17,9 @@ importers:
       drizzle-zod:
         specifier: ^0.6.0
         version: 0.6.0(drizzle-orm@0.38.0(pg@8.13.1)(postgres@3.4.5))(zod@3.24.0)
+      ofetch:
+        specifier: ^1.4.1
+        version: 1.4.1
       pg-core@latest:
         specifier: link:drizzle-orm/pg-core@latest
         version: link:drizzle-orm/pg-core@latest

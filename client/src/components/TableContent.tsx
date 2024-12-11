@@ -7,7 +7,13 @@ import EditDialog from './dialogs/Edit'
 import EmptyState from './EmptyState'
 
 async function fetchQuestions() {
-    return fetcher('/questions')
+    const page = 1
+
+    const query = new URLSearchParams({
+        page: page.toString(),
+    }).toString()
+
+    return fetcher(`/questions?${query}`)
 }
 
 function TableContent() {
