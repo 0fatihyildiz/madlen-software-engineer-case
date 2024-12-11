@@ -31,6 +31,8 @@ function DeleteDialog({ id }: Props) {
                 <AlertDialog.Title>Are You Sure?</AlertDialog.Title>
                 <AlertDialog.Description size="2" className="text-slate-10">
                     Are you sure you want to delete the question? This action cannot be undone.
+                    {' '}
+                    <b>{id}</b>
                 </AlertDialog.Description>
 
                 <Flex gap="3" mt="4" justify="end">

@@ -1,13 +1,27 @@
+import type { QuestionUpdate } from '../../types/question'
 import { Pencil1Icon } from '@radix-ui/react-icons'
 import { Button, Dialog, Flex, Select, Text, TextField } from '@radix-ui/themes'
+import { useMutation } from '@tanstack/react-query'
 import { COGNITIVE_LEVEL, COURSE_NAME, DIFFICULTY_LEVEL } from '../../constants/table'
+import fetcher from '../../utils/api'
 
 interface Props {
     id: string
 }
 
+async function editQuestion({ id, data }: { id: string, data: QuestionUpdate }) {
+    return fetcher(`/questions/${id}`, { method: 'PUT', body: JSON.stringify(data) })
+}
+
 function EditDialog({ id }: Props) {
-    
+    const { mutate } = useMutation({
+        mutationFn: editQuestion,
+        onSuccess: () => {
+        },
+        onError: () => {
+        },
+    })
+
     return (
         <Dialog.Root>
             <Dialog.Trigger>
@@ -84,7 +98,7 @@ function EditDialog({ id }: Props) {
                             Cancel
                         </Button>
                     </Dialog.Close>
-                    <Dialog.Close>
+                    <Dialog.Close onClick={() => mutate({ id, data: {} })}>
                         <Button>Save</Button>
                     </Dialog.Close>
                 </Flex>

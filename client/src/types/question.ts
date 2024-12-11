@@ -11,4 +11,14 @@ interface Question {
     metadataId: string
 }
 
-export type { Question }
+interface QuestionUpdate {
+    questionText?: string
+    contextPages?: number[]
+    difficultyLevel?: string
+    cognitiveLevel?: string
+    keyConcepts?: string[]
+    courseName?: string
+    gradingCriteria?: string[]
+}
+
+export type { Question, QuestionUpdate }
