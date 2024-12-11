@@ -9,6 +9,9 @@ export default defineConfig({
             '@': path.resolve(__dirname, './src'),
         },
     },
+    optimizeDeps: {
+        include: ['@tanstack/react-query', '@radix-ui/react-icons', 'radix-themes-tw'],
+    },
     preview: {
         port: 3000,
         strictPort: true,
