@@ -4,7 +4,9 @@ export default defineNitroConfig({
 	compatibilityDate: "2024-12-09",
 
 	routeRules: {
-		'/**': { cors: true },
+		'/**': {
+			cors: true
+		},
 	},
 
 	imports: {

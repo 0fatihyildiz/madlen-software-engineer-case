@@ -40,7 +40,7 @@ function TableContent() {
             </Table.Header>
 
             <Table.Body>
-                { data.map((question: Question) => (
+                { data.questions.map((question: Question) => (
                     <Table.Row key={question.id}>
                         <Table.Cell>{question.id}</Table.Cell>
                         <Table.Cell className="max-w-5 truncate">{question.questionText}</Table.Cell>

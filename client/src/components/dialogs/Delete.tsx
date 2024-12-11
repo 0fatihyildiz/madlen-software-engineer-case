@@ -8,7 +8,9 @@ interface Props {
 }
 
 async function deleteQuestion(id: string) {
-    return fetcher(`/questions/${id}`, { method: 'DELETE' })
+    return fetcher(`/questions/${id}`, {
+        method: 'POST',
+    })
 }
 
 function DeleteDialog({ id }: Props) {

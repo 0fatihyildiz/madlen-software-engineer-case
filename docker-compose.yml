@@ -13,27 +13,27 @@ services:
     networks:
       - postgres_network
 
-#   frontend:
-#     build:
-#       context: ./client
-#     container_name: madlen_frontend_service
-#     ports:
-#       - "3050:3000"
-#     environment:
-#       - VITE_BASE_URL=http://localhost:3051
-#     volumes:
-#       - ./client:/app
-#       - /app/node_modules
-#     command: pnpm run dev --host
+  # frontend:
+  #   build:
+  #     context: ./client
+  #   container_name: madlen_frontend_service
+  #   ports:
+  #     - "3050:3000"
+  #   environment:
+  #     - VITE_BASE_URL=http://localhost:3051
+  #   volumes:
+  #     - ./client:/app
+  #     - /app/node_modules
+  #   command: pnpm run dev --host
 
-#   backend:
-#     build:
-#       context: ./server
-#     container_name: madlen_backend_service
-#     ports:
-#       - "3051:3000"
-#     environment:
-#       - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
+  # backend:
+  #   build:
+  #     context: ./server
+  #   container_name: madlen_backend_service
+  #   ports:
+  #     - "3051:3000"
+  #   environment:
+  #     - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
 
 networks:
   postgres_network:

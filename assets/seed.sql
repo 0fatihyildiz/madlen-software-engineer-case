@@ -37,6 +37,7 @@ CREATE TABLE "supporting_evidence" (
 ALTER TABLE "questions" ADD CONSTRAINT "questions_model_answer_id_fk" FOREIGN KEY ("model_answer_id") REFERENCES "model_answer"("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE "questions" ADD CONSTRAINT "questions_metadata_id_fk" FOREIGN KEY ("metadata_id") REFERENCES "metadata"("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+
 CREATE OR REPLACE FUNCTION manage_dynamic_metadata()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -53,7 +54,7 @@ BEGIN
     ELSE
         SELECT id INTO found_metadata_id
         FROM metadata
-        ORDER BY "id" DESC
+        ORDER BY id DESC
         LIMIT 1;
 
         UPDATE metadata
@@ -74,6 +75,88 @@ CREATE TRIGGER trigger_manage_dynamic_metadata
 BEFORE INSERT ON questions
 FOR EACH ROW
 EXECUTE FUNCTION manage_dynamic_metadata();
+
+
+CREATE OR REPLACE FUNCTION manage_dynamic_metadata_on_delete()
+RETURNS TRIGGER AS $$
+DECLARE
+    found_metadata_id UUID;
+BEGIN
+    found_metadata_id := OLD.metadata_id;
+
+    IF found_metadata_id IS NULL THEN
+        RAISE NOTICE 'metadata_id not found for the deleted question.';
+        RETURN OLD;
+          END IF;
+
+    UPDATE metadata
+    SET
+        total_questions = total_questions - 1,
+        coverage_pages = (
+            SELECT array_agg(elem)
+            FROM unnest(coverage_pages) elem
+            WHERE elem <> ALL (OLD.context_pages)
+        ),
+        primary_topics = (
+            SELECT array_agg(elem)
+            FROM unnest(primary_topics) elem
+            WHERE elem <> ALL (OLD.key_concepts)
+        )
+    WHERE id = found_metadata_id;
+
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS trigger_manage_dynamic_metadata_on_delete ON questions;
+CREATE TRIGGER trigger_manage_dynamic_metadata_on_delete
+BEFORE DELETE ON questions
+FOR EACH ROW
+EXECUTE FUNCTION manage_dynamic_metadata_on_delete();
+
+
+CREATE OR REPLACE FUNCTION manage_dynamic_metadata_on_update()
+RETURNS TRIGGER AS $$
+DECLARE
+    found_metadata_id UUID;
+BEGIN
+    found_metadata_id := OLD.metadata_id;
+
+    IF found_metadata_id IS NULL THEN
+        RAISE NOTICE 'Old metadata_id not found for the updated question.';
+          RETURN NEW;
+            END IF;
+
+    UPDATE metadata
+    SET
+        coverage_pages = (
+            SELECT array_agg(elem)
+            FROM unnest(coverage_pages) elem
+            WHERE elem <> ALL (OLD.context_pages)
+        ),
+        primary_topics = (
+            SELECT array_agg(elem)
+            FROM unnest(primary_topics) elem
+            WHERE elem <> ALL (OLD.key_concepts)
+        )
+    WHERE id = found_metadata_id;
+
+    UPDATE metadata
+    SET
+        coverage_pages = array_cat(coverage_pages, NEW.context_pages),
+        primary_topics = array_cat(primary_topics, NEW.key_concepts)
+    WHERE id = found_metadata_id;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS trigger_manage_dynamic_metadata_on_update ON questions;
+CREATE TRIGGER trigger_manage_dynamic_metadata_on_update
+BEFORE UPDATE ON questions
+FOR EACH ROW
+EXECUTE FUNCTION manage_dynamic_metadata_on_update();
+
 
 INSERT INTO model_answer (id, main_argument, key_points, supporting_evidence, conclusion)
 VALUES

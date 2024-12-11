@@ -9,15 +9,18 @@ export default defineEventHandler(async (event) => {
     const paginateMeta = metadataResponse[Number(page) - 1]
 
     if (!difficulty_level && !cognitive_level && !course_name && !context_pages && !question_text) {
-        const result = await db.query.questions.findMany({
+        const questions = await db.query.questions.findMany({
             where: (questions, { eq }) => eq(questions.metadataId, paginateMeta.id)
         })
 
-        if (!result.length) {
+        if (!questions.length) {
             throw createError({ message: 'No questions found', statusCode: 404 });
         }
 
-        return createApiResponse(200, result);
+        return createApiResponse(200, {
+            questions,
+            metadata: paginateMeta
+        });
     }
 
     let dbQuery = db.query.questions.findMany({
