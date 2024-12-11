@@ -2,9 +2,9 @@ import { Theme } from '@radix-ui/themes'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import Home from './pages/home.tsx'
 
-const queryClient = new QueryClient()
-
 function App() {
+    const queryClient = new QueryClient()
+
     return (
         <QueryClientProvider client={queryClient}>
             <Theme className="main" accentColor="orange">
