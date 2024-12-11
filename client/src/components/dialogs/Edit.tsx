@@ -17,6 +17,9 @@ async function editQuestion({ id, data }: { id: string, data: QuestionUpdate }) 
     return fetcher(`/questions/${id}/edit`, {
         method: 'POST',
         body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+        },
     })
 }
 

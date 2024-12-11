@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
     const metadataResponse = await db.select().from(metadata);
 
 
-    if (!difficulty_level && !cognitive_level && !course_name && !context_pages && !question_text) {
+    if (page && !difficulty_level && !cognitive_level && !course_name && !context_pages && !question_text) {
         if (!page) {
             throw createError({ message: 'Page number is required', statusCode: 400 });
         }
@@ -64,6 +64,6 @@ export default defineEventHandler(async (event) => {
 
     return createApiResponse(200, {
         questions,
-        metadata: paginateMeta
+        metadata: null
     });
 });

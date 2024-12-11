@@ -3,6 +3,11 @@ import { eq } from 'drizzle-orm';
 import { questions } from '~/schema/table';
 
 export default defineCachedEventHandler(async (event) => {
+    setResponseHeaders(event, {
+        accessControlAllowOrigin: "*",
+        "content-type": "application/json",
+    });
+
     const body = await readBody(event);
     const id = getRouterParam(event, 'id');
 
