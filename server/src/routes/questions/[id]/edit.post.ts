@@ -3,12 +3,13 @@ import { eq } from 'drizzle-orm';
 import { questions } from '~/schema/table';
 
 export default defineCachedEventHandler(async (event) => {
+    const body = await readBody(event);
     const id = getRouterParam(event, 'id');
 
-    const data = await readValidatedBody(event, QuestionValidation.parse);
+    console.log(body);
 
     const result = await db.update(questions)
-        .set(data)
+        .set(body)
         .where(eq(questions.id, id));
 
     if (!result) {

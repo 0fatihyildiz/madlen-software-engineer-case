@@ -6,9 +6,15 @@ export default defineEventHandler(async (event) => {
     const { difficulty_level, cognitive_level, course_name, context_pages, question_text, page } = query;
 
     const metadataResponse = await db.select().from(metadata);
-    const paginateMeta = metadataResponse[Number(page) - 1]
+
 
     if (!difficulty_level && !cognitive_level && !course_name && !context_pages && !question_text) {
+        if (!page) {
+            throw createError({ message: 'Page number is required', statusCode: 400 });
+        }
+
+        const paginateMeta = metadataResponse[Number(page) - 1]
+
         const questions = await db.query.questions.findMany({
             where: (questions, { eq }) => eq(questions.metadataId, paginateMeta.id)
         })
