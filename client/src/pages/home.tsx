@@ -1,24 +1,13 @@
 import { Flex } from '@radix-ui/themes'
-import { useQuery } from '@tanstack/react-query'
+import TableContent from '../components/TableContent'
 import TableHeader from '../components/TableHeader'
-import fetcher from '../utils/api'
-
-async function fetchQuestions() {
-    return fetcher('/questions')
-}
 
 function Home() {
-    const { data, error, isLoading } = useQuery({ queryKey: ['questions'], queryFn: fetchQuestions })
-
-    if (isLoading)
-        return <div>Loading...</div>
-    if (error)
-        return <div>Error loading data</div>
-
     return (
-        <Flex direction="column" gap="2" className="h-full w-full bg-olive-1" justify="center" align="center">
-            <Flex direction="row" gap="2" align="center" className="max-w-[60rem] w-full mx-auto">
+        <Flex direction="column" gap="2" className="h-full w-full bg-olive-1 py-12 px-5" align="center">
+            <Flex direction="column" gap="6" align="center" className="max-w-[60rem] w-full mx-auto">
                 <TableHeader />
+                <TableContent />
             </Flex>
         </Flex>
     )

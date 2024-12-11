@@ -5,7 +5,8 @@ async function fetcher(endpoint: string, options = {}) {
     if (!res.ok) {
         throw new Error('Network response was not ok')
     }
-    return res.json()
+    const data = await res.json() as { body: any }
+    return data.body
 }
 
 export default fetcher
