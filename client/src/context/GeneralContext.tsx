@@ -37,9 +37,9 @@ function GeneralProvider({ children }: GeneralProviderProps) {
         return fetcher(`/metadata`)
     }
 
-    async function fetchQuestions(page: number = 1) {
+    async function fetchQuestions(pageVal?: number) {
         const query = new URLSearchParams({
-            page: page.toString(),
+            page: pageVal?.toString() || page.toString(),
         }).toString()
 
         const response = await fetcher(`/questions?${query}`)

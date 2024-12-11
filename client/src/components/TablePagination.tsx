@@ -4,7 +4,7 @@ import { type Key, useContext } from 'react'
 import { GeneralContext } from '../context/GeneralContext'
 
 function TablePagination() {
-    const { page, setPage, fetchMetaData } = useContext(GeneralContext)
+    const { page, setPage, fetchMetaData, fetchQuestions } = useContext(GeneralContext)
     const { data, error, isLoading } = useQuery({ queryKey: ['metadata'], queryFn: fetchMetaData })
 
     if (isLoading)
@@ -15,6 +15,7 @@ function TablePagination() {
 
     function handlePageChange(page: number) {
         setPage(page)
+        fetchQuestions(page)
     }
 
     return (
