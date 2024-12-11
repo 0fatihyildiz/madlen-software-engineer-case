@@ -2,19 +2,12 @@ import QuestionValidation from '../../../validation/questions';
 import { eq } from 'drizzle-orm';
 import { questions } from '~/schema/table';
 
-export default defineCachedEventHandler(async (event) => {
-    setResponseHeaders(event, {
-        accessControlAllowOrigin: "*",
-        "content-type": "application/json",
-    });
-
-    const body = await readBody(event);
+export default defineEventHandler(async (event) => {
+    const data = await readValidatedBody(event, QuestionValidation.parse);
     const id = getRouterParam(event, 'id');
 
-    console.log(body);
-
     const result = await db.update(questions)
-        .set(body)
+        .set(data)
         .where(eq(questions.id, id));
 
     if (!result) {

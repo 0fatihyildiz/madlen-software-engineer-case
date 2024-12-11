@@ -36,13 +36,13 @@ export default defineEventHandler(async (event) => {
             if (course_name) {
                 conditions.push(eq(questions.courseName, String(course_name)));
             }
-            // if (context_pages) {
-            //     const contextPagesArray = Array.isArray(context_pages) ? context_pages : [context_pages];
+            if (context_pages) {
+                const contextPagesArray = Array.isArray(context_pages) ? context_pages : [context_pages];
 
-            //     if (contextPagesArray && contextPagesArray.length > 0) {
-            //         conditions.push(eq(questions.contextPages, contextPagesArray?.map(Number)));
-            //     }
-            // }
+                if (contextPagesArray && contextPagesArray.length > 0) {
+                    conditions.push(eq(questions.contextPages, contextPagesArray.map(Number)));
+                }
+            }
             if (question_text) {
                 conditions.push(like(questions.questionText, `%${question_text}%`));
             }
