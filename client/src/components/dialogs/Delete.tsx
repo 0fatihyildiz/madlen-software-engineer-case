@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useContext } from 'react'
 import { GeneralContext } from '../../context/GeneralContext'
 import fetcher from '../../utils/api'
+import { toast } from 'sonner'
 
 interface Props {
     id: string
@@ -22,8 +23,10 @@ function DeleteDialog({ id }: Props) {
         mutationFn: deleteQuestion,
         onSuccess: () => {
             fetchQuestions()
+            toast.success('Question deleted successfully')
         },
         onError: () => {
+            toast.error('An error occurred while deleting the question')
         },
     })
 

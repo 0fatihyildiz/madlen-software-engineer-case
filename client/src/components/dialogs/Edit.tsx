@@ -4,6 +4,7 @@ import { Button, Dialog, Flex, Select, Text, TextField } from '@radix-ui/themes'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
 import { useContext, useEffect, useState } from 'react'
+import { toast } from 'sonner'
 import { COGNITIVE_LEVEL, COURSE_NAME, DIFFICULTY_LEVEL } from '../../constants/table'
 import { GeneralContext } from '../../context/GeneralContext'
 import fetcher from '../../utils/api'
@@ -27,8 +28,11 @@ function EditDialog({ id }: Props) {
         mutationFn: editQuestion,
         onSuccess: () => {
             fetchQuestions()
+            toast.success('Question updated successfully')
         },
-        onError: () => {},
+        onError: () => {
+            toast.error('An error occurred while updating the question')
+        },
     })
 
     const [questionText, setQuestionText] = useState('')
