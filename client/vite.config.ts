@@ -10,7 +10,7 @@ export default defineConfig({
         },
     },
     optimizeDeps: {
-        include: ['@tanstack/react-query', '@radix-ui/react-icons', 'radix-themes-tw'],
+        include: ['@tanstack/react-query', '@radix-ui/react-icons', 'radix-themes-tw', '@react-pdf-viewer/core'],
     },
     preview: {
         port: 3000,
