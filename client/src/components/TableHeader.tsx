@@ -63,7 +63,6 @@ function TableHeader() {
 
     const handleClearFilters = () => {
         setFilters(initialFilters)
-        fetchQuestions()
     }
 
     const fetchQuestionsWithFilter = async (filters: Record<string, string>) => {
@@ -80,7 +79,11 @@ function TableHeader() {
 
     useEffect(() => {
         setQuestions?.(data)
-    }, [data, setQuestions])
+
+        if (!isAnyFilterActive) {
+            fetchQuestions()
+        }
+    }, [data, filters])
 
     return (
         <Flex direction="row" gap="2" align="center" justify="between" className="w-full">
