@@ -1,50 +1,16 @@
-# React + TypeScript + Vite
+# Frontend Specifications - Madlen Case
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This frontend application is built with React, TypeScript, and Tailwind CSS. It provides a user-friendly interface for viewing and interacting with the questions and model answers stored in the backend service.
 
-Currently, two official plugins are available:
+## Technologies Used
+- **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: A statically typed superset of JavaScript that enhances code quality and developer productivity.
+- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom designs.
+- **React Query**: A library for managing server state in React applications, providing hooks for fetching, caching, and updating data.
+- **Radix UI**: A collection of low-level UI components for building accessible and composable interfaces.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-    languageOptions: {
-    // other options...
-        parserOptions: {
-            project: ['./tsconfig.node.json', './tsconfig.app.json'],
-            tsconfigRootDir: import.meta.dirname,
-        },
-    },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-    // Set the react version
-    settings: { react: { version: '18.3' } },
-    plugins: {
-    // Add the react plugin
-        react,
-    },
-    rules: {
-    // other rules...
-    // Enable its recommended rules
-        ...react.configs.recommended.rules,
-        ...react.configs['jsx-runtime'].rules,
-    },
-})
-```
+## Features
+- **Question List**: Displays a list of questions with basic information such as the question text, context, and difficulty level.
+- **Question Edit**: Shows detailed information about a specific question, including the model answer, key concepts, and grading criteria.
+- **Question Delete**: Allows users to delete questions from the database.
+- **Pagination**: Supports paginated viewing of questions to improve performance and user experience.
