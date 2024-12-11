@@ -157,7 +157,7 @@ function QuestionForm({ id, questionText, setQuestionText, difficultyLevel, setD
                 <Text as="div" size="2" mb="1" weight="bold">
                     Course Name
                 </Text>
-                <Select.Root value={courseName} onValueChange={value => setCourseName(value)}>
+                <Select.Root value={courseName.toLocaleLowerCase()} onValueChange={value => setCourseName(value)}>
                     <Select.Trigger className="capitalize w-full" placeholder="Course Name" />
                     <Select.Content className="h-auto">
                         <Select.Group>

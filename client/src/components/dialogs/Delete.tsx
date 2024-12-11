@@ -2,9 +2,9 @@ import { TrashIcon } from '@radix-ui/react-icons'
 import { AlertDialog, Button, Flex } from '@radix-ui/themes'
 import { useMutation } from '@tanstack/react-query'
 import { useContext } from 'react'
+import { toast } from 'sonner'
 import { GeneralContext } from '../../context/GeneralContext'
 import fetcher from '../../utils/api'
-import { toast } from 'sonner'
 
 interface Props {
     id: string
