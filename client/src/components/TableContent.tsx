@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import { GeneralContext } from '../context/GeneralContext'
 import DeleteDialog from './dialogs/Delete'
 import EditDialog from './dialogs/Edit'
+import ViewDialog from './dialogs/View'
 import EmptyState from './EmptyState'
 
 function TableContent() {
@@ -43,6 +44,7 @@ function TableContent() {
                             <Flex direction="row" className="w-full flex gap-2 justify-end items-center">
                                 <DeleteDialog id={question.id} />
                                 <EditDialog id={question.id} />
+                                <ViewDialog />
                             </Flex>
                         </Table.Cell>
                     </Table.Row>
