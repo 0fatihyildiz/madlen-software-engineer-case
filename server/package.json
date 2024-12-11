@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "dotenv": "^16.4.7",
-    "nitropack": "npm:nitropack-nightly@latest",
+    "nitropack": "^2.10.4",
     "pg": "^8.11.3",
     "postgres": "^3.4.4",
     "tsx": "^4.19.2"

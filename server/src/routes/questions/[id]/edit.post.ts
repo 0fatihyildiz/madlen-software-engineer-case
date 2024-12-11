@@ -1,4 +1,4 @@
-import QuestionValidation from '../../validation/questions';
+import QuestionValidation from '../../../validation/questions';
 import { eq } from 'drizzle-orm';
 import { questions } from '~/schema/table';
 

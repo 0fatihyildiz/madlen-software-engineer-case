@@ -7,7 +7,6 @@ export default defineCachedEventHandler(async (event) => {
         where: (questions, { eq }) => eq(questions.id, id)
     });
 
-
     if (!result)
         createError({ message: 'No questions found', statusCode: 404 });
 
