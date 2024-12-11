@@ -12,6 +12,7 @@ interface GeneralContextType {
         questions: Question[]
         metadata: MetaData | null
     } | null
+    setQuestions?: (questions: any) => void
 }
 
 export const GeneralContext = createContext<GeneralContextType>({
@@ -20,6 +21,7 @@ export const GeneralContext = createContext<GeneralContextType>({
     fetchMetaData: () => Promise.resolve(null),
     fetchQuestions: () => Promise.resolve(null),
     questions: null,
+    setQuestions: () => null,
 })
 
 interface GeneralProviderProps {
@@ -48,7 +50,7 @@ function GeneralProvider({ children }: GeneralProviderProps) {
     }
 
     return (
-        <GeneralContext.Provider value={{ page, setPage, fetchMetaData, fetchQuestions, questions }}>
+        <GeneralContext.Provider value={{ page, setPage, fetchMetaData, fetchQuestions, questions, setQuestions }}>
             {children}
         </GeneralContext.Provider>
     )
