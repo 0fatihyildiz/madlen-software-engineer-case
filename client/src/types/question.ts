@@ -21,4 +21,11 @@ interface QuestionUpdate {
     gradingCriteria?: string[]
 }
 
-export type { Question, QuestionUpdate }
+interface MetaData {
+    id: string
+    totalQuestions: number
+    coveragePages: number[]
+    primaryTopics: string[]
+}
+
+export type { MetaData, Question, QuestionUpdate }

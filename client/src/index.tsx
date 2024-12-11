@@ -1,5 +1,6 @@
 import { Theme } from '@radix-ui/themes'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import GeneralProvider from './context/GeneralContext.tsx'
 import Home from './pages/home.tsx'
 
 function App() {
@@ -7,9 +8,11 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <Theme className="main" accentColor="orange">
-                <Home />
-            </Theme>
+            <GeneralProvider>
+                <Theme className="main" accentColor="orange">
+                    <Home />
+                </Theme>
+            </GeneralProvider>
         </QueryClientProvider>
     )
 }

@@ -1,23 +1,15 @@
 import type { Question } from '../types/question'
 import { Flex, Table } from '@radix-ui/themes'
 import { useQuery } from '@tanstack/react-query'
-import fetcher from '../utils/api'
+import { useContext } from 'react'
+import { GeneralContext } from '../context/GeneralContext'
 import DeleteDialog from './dialogs/Delete'
 import EditDialog from './dialogs/Edit'
 import EmptyState from './EmptyState'
 
-async function fetchQuestions() {
-    const page = 1
-
-    const query = new URLSearchParams({
-        page: page.toString(),
-    }).toString()
-
-    return fetcher(`/questions?${query}`)
-}
-
 function TableContent() {
-    const { data, error, isLoading } = useQuery({ queryKey: ['questions'], queryFn: fetchQuestions })
+    const { fetchQuestions, questions: data } = useContext(GeneralContext)
+    const { error, isLoading } = useQuery({ queryKey: ['questions'], queryFn: () => fetchQuestions() })
 
     if (isLoading)
         return <div>Loading...</div>
@@ -40,7 +32,7 @@ function TableContent() {
             </Table.Header>
 
             <Table.Body>
-                { data.questions.map((question: Question) => (
+                { data?.questions?.map((question: Question) => (
                     <Table.Row key={question.id}>
                         <Table.Cell>{question.id}</Table.Cell>
                         <Table.Cell className="max-w-5 truncate">{question.questionText}</Table.Cell>
@@ -58,7 +50,6 @@ function TableContent() {
 
             </Table.Body>
         </Table.Root>
-
     )
 }
 
