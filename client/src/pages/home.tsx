@@ -1,5 +1,5 @@
 import { Flex } from '@radix-ui/themes'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import TableHeader from '../components/TableHeader'
 import fetcher from '../utils/api'
 
@@ -8,7 +8,7 @@ async function fetchQuestions() {
 }
 
 function Home() {
-    const { data, error, isLoading } = useQuery('questions', fetchQuestions)
+    const { data, error, isLoading } = useQuery({ queryKey: ['questions'], queryFn: fetchQuestions })
 
     if (isLoading)
         return <div>Loading...</div>
