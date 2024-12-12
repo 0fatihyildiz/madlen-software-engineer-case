@@ -20,15 +20,16 @@ services:
     ports:
       - "3050:3000"
     environment:
-      - VITE_BASE_URL=http://localhost:3051
+      - VITE_BASE_URL=http://localhost:3001
 
   backend:
     build:
       context: ./server
     container_name: madlen_backend_service
     ports:
-      - "3051:3000"
+      - "3051:3001"
     environment:
+      - PORT=3001
       - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
 
 networks:
