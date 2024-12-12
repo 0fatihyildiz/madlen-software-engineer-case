@@ -38,10 +38,7 @@ export default defineEventHandler(async (event) => {
             }
             if (context_pages) {
                 const contextPagesArray = Array.isArray(context_pages) ? context_pages : [context_pages];
-
-                if (contextPagesArray && contextPagesArray.length > 0) {
-                    conditions.push(eq(questions.contextPages, contextPagesArray.map(Number)));
-                }
+                conditions.push(eq(questions.contextPages, contextPagesArray.map(Number)));
             }
             if (question_text) {
                 conditions.push(like(questions.questionText, `%${question_text}%`));

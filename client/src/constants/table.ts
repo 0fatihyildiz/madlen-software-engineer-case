@@ -13,12 +13,12 @@ const DIFFICULTY_LEVEL = [
 ]
 
 const COURSE_NAME = [
-    'matematik',
-    'fizik',
-    'kimya',
-    'biyoloji',
-    'geometri',
-    'çevre bilimleri',
+    'Matematik',
+    'Fizik',
+    'Kimya',
+    'Biyoloji',
+    'Geometri',
+    'Çevre bilimleri',
 ]
 
 export { COGNITIVE_LEVEL, COURSE_NAME, DIFFICULTY_LEVEL }

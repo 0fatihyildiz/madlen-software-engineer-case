@@ -47,7 +47,7 @@ BEGIN
     SELECT COUNT(*) INTO question_count FROM questions;
     question_count := question_count + 1;
 
-    IF (question_count % 5) = 1 THEN
+    IF (question_count % 3) = 1 THEN
         INSERT INTO metadata (total_questions, coverage_pages, primary_topics)
         VALUES (1, NEW.context_pages, NEW.key_concepts)
         RETURNING id INTO NEW.metadata_id;

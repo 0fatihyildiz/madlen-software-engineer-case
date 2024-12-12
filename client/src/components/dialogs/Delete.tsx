@@ -17,12 +17,12 @@ async function deleteQuestion(id: string) {
 }
 
 function DeleteDialog({ id }: Props) {
-    const { fetchQuestions } = useContext(GeneralContext)
+    const { handleFilterChange } = useContext(GeneralContext)
 
     const { mutate } = useMutation({
         mutationFn: deleteQuestion,
         onSuccess: () => {
-            fetchQuestions()
+            handleFilterChange?.()
             toast.success('Question deleted successfully')
         },
         onError: () => {

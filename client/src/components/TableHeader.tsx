@@ -4,8 +4,7 @@ import { Badge, Button, Flex, Select, TextField } from '@radix-ui/themes'
 import { useQuery } from '@tanstack/react-query'
 import { useContext, useEffect, useState } from 'react'
 import { COGNITIVE_LEVEL, COURSE_NAME, DIFFICULTY_LEVEL } from '../constants/table'
-import { GeneralContext } from '../context/GeneralContext'
-import fetcher from '../utils/api'
+import { GeneralContext, initialFilters } from '../context/GeneralContext'
 
 function useDebouncedValue<T>(value: T, delay: number): T {
     const [debouncedValue, setDebouncedValue] = useState(value)
@@ -32,7 +31,7 @@ function selectOptions(
                 <Select.Group>
                     <Select.Label>{placeholder}</Select.Label>
                     {options.map(option => (
-                        <Select.Item key={option} className="capitalize" value={option.at(0)?.toUpperCase() + option.slice(1)}>
+                        <Select.Item key={option} className="capitalize" value={option}>
                             {option}
                         </Select.Item>
                     ))}
@@ -42,37 +41,29 @@ function selectOptions(
     )
 }
 
-const initialFilters = {
-    course_name: '',
-    difficulty_level: '',
-    cognitive_level: '',
-    question_text: '',
-    context_name: '',
-}
-
 function TableHeader() {
-    const { setQuestions, fetchQuestions } = useContext(GeneralContext)
+    const { setQuestions, fetchQuestions, filters, setFilters, fetchQuestionsWithFilter } = useContext(GeneralContext)
 
-    const [filters, setFilters] = useState(initialFilters)
     const debouncedFilters = useDebouncedValue(filters, 500)
-    const isAnyFilterActive = Object.values(debouncedFilters).some(val => val.trim() !== '')
+    const isAnyFilterActive = debouncedFilters && Object.values(debouncedFilters).some(val => Array.isArray(val) ? val.length > 0 : val.trim() !== '')
 
     const handleFilterChange = (key: string, value: string) => {
-        setFilters(prev => ({ ...prev, [key]: value }))
+        if (!setFilters)
+            return
+
+        setFilters(prev => ({
+            ...prev,
+            [key]: key === 'context_name' ? value.split(',') : value,
+        }))
     }
 
     const handleClearFilters = () => {
-        setFilters(initialFilters)
-    }
-
-    const fetchQuestionsWithFilter = async (filters: Record<string, string>) => {
-        const query = new URLSearchParams(filters).toString()
-        return fetcher(`/questions?${query}`, { method: 'GET' })
+        setFilters?.(initialFilters)
     }
 
     const { data } = useQuery<Question[], Error>({
         queryKey: ['questions', debouncedFilters],
-        queryFn: () => fetchQuestionsWithFilter(debouncedFilters),
+        queryFn: () => debouncedFilters ? fetchQuestionsWithFilter?.(debouncedFilters) ?? Promise.resolve([]) : Promise.resolve([]),
         enabled: isAnyFilterActive,
         staleTime: 5000,
     })
@@ -101,17 +92,17 @@ function TableHeader() {
                 <TextField.Root
                     className="w-[5.625rem]"
                     placeholder="Context N..."
-                    value={filters.context_name}
+                    value={Array.isArray(filters?.context_name) ? filters.context_name.join(',') : filters?.context_name ?? ''}
                     onChange={e => handleFilterChange('context_name', e.target.value)}
                 />
 
-                {selectOptions('course_name', 'Course Name', COURSE_NAME, handleFilterChange, filters.course_name)}
-                {selectOptions('difficulty_level', 'Difficulty Level', DIFFICULTY_LEVEL, handleFilterChange, filters.difficulty_level)}
-                {selectOptions('cognitive_level', 'Cognitive Level', COGNITIVE_LEVEL, handleFilterChange, filters.cognitive_level)}
+                {filters && selectOptions('course_name', 'Course Name', COURSE_NAME, handleFilterChange, Array.isArray(filters.course_name) ? filters.course_name.join(',') : filters.course_name ?? '')}
+                {filters && selectOptions('difficulty_level', 'Difficulty Level', DIFFICULTY_LEVEL, handleFilterChange, Array.isArray(filters.difficulty_level) ? filters.difficulty_level.join(',') : filters.difficulty_level ?? '')}
+                {filters && selectOptions('cognitive_level', 'Cognitive Level', COGNITIVE_LEVEL, handleFilterChange, Array.isArray(filters.cognitive_level) ? filters.cognitive_level.join(',') : filters.cognitive_level ?? '')}
 
                 <TextField.Root
                     placeholder="Search the question…"
-                    value={filters.question_text}
+                    value={Array.isArray(filters?.question_text) ? filters.question_text.join(',') : filters?.question_text ?? ''}
                     onChange={e => handleFilterChange('question_text', e.target.value)}
                 >
                     <TextField.Slot>
