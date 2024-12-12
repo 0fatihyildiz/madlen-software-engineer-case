@@ -1,3 +1,4 @@
+![@0fatihyildiz/madlen-software-engineer-case](./.github/assets/showcase.mp4)
 # Madlen Software Engineering Case Study
 
 This repository contains the solution to the Madlen Software Engineering Case Study. The solution is divided into two main parts:
