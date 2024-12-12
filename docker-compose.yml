@@ -20,7 +20,9 @@ services:
     ports:
       - "3050:3000"
     environment:
-      - VITE_BASE_URL=http://localhost:3001
+      - VITE_BASE_URL=http://localhost:3051
+    networks:
+      - postgres_network
 
   backend:
     build:
@@ -30,7 +32,11 @@ services:
       - "3051:3001"
     environment:
       - PORT=3001
-      - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
+    networks:
+      - postgres_network
+    depends_on:
+      - postgres
 
 networks:
   postgres_network:
