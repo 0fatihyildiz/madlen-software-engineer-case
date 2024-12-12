@@ -12,9 +12,9 @@ This backend service handles the management of metadata, questions, model answer
 - `GET` **/metadata**: Fetches all metadata entries.
 - `GET` **/questions**: Fetches all questions with associated metadata.
 - `GET` **/questions/:id**: Fetches a specific question by ID.
-- `PUT` **/questions/:id**: Updates an existing question by ID.
-- `POST` **/questions/:id**: Deletes a question by ID.
-It is not the delete method because I encountered a problem with the node version that has not been resolved yet. [issue](https://github.com/nuxt/nuxt/issues/23422)
+- `POST` **/questions/:id/edit**: Updates an existing question by ID.
+- `POST` **/questions/:id/delete**: Deletes a question by ID.
+I can't use delete and put methods because I encountered a problem with the node version that has not been resolved yet. [issue](https://github.com/nuxt/nuxt/issues/23422)
 
 ## Database Schema
 

@@ -14,3 +14,4 @@ This frontend application is built with React, TypeScript, and Tailwind CSS. It 
 - **Question Edit**: Shows detailed information about a specific question, including the model answer, key concepts, and grading criteria.
 - **Question Delete**: Allows users to delete questions from the database.
 - **Pagination**: Supports paginated viewing of questions to improve performance and user experience.
+- **PDF Viewer**: Integrates a PDF viewer for displaying context pages and supporting evidence.
